@@ -1,21 +1,41 @@
-/// <reference types="p5" />
-
-// for red, green, and blue color values
-var r, g, b;
-
 function setup() {
-  createCanvas(720, 400);
-  // Pick colors randomly
-  r = random(255);
-  g = random(255);
-  b = random(255);
+  createCanvas(900, 600);
+  paddle = new Paddle(width/2, height-20);
 }
 
 function draw() {
-  background(51);
-  // Draw a circle
-  strokeWeight(2);
-  stroke(r, g, b);
-  fill(r, g, b, 127);
-  ellipse(360, 200, 200, 200);
+  background(0);
+  paddle.update();
+  paddle.show();
+}
+
+class Paddle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.speed = 10;
+    this.direction = 0;
+  }
+
+  show() {
+    rectMode(CENTER);
+    fill(255);
+    rect(this.x, this.y, 150, 20);
+  }
+
+  update() {
+    this.x += this.direction * this.speed;
+  }
+
+  moveLeft() {
+    this.direction = -1;
+  }
+
+  moveRight() {
+    this.direction = 1;
+  }
+
+  stop() {
+    this.direction = 0;
+  }
 }
