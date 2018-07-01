@@ -14,6 +14,8 @@ class Paddle {
 
   update() {
     this.x += this.direction * this.speed;
+    if (this.x < 0) this.x = 0;
+    if (this.x > width) this.x = width;
   }
 
   moveLeft() {
