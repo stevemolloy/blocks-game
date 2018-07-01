@@ -31,10 +31,11 @@ function ballHitsPaddle(ball, paddle) {
   if (ball.pos.y < height - 30) {
     return;
   }
-  if (ball.pos.x < paddle.x - 75) {
-    console.log('Missed paddle on left');
-  } else if (ball.pos.x > paddle.x + 75) {
-    console.log('Missed paddle on right');
+  if (ball.pos.x < paddle.x - 75 || ball.pos.x > paddle.x + 75) {
+    console.log('Missed paddle');
+    ball.pos.x = width/2;
+    ball.pos.y = height/2;
+    ball.speed = 4;
   } else {
     var hitPos = ball.pos.x - paddle.x;
     ball.velocity.x += map(hitPos, -75, 75, -1, 1, true);
