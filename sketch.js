@@ -13,6 +13,14 @@ function draw() {
   paddle.show();
   ball.update();
   ball.show();
+function togglePause() {
+  if (paused) {
+    paused = false;
+    loop();
+  } else {
+    paused = true;
+    noLoop();
+  }
 }
 
 function keyPressed() {
@@ -20,6 +28,8 @@ function keyPressed() {
     paddle.moveLeft();
   } else if (keyCode === RIGHT_ARROW) {
     paddle.moveRight();
+  } else if (key === 'p' || key === 'P') {
+    togglePause();
   }
 }
 
