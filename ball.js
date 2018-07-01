@@ -11,6 +11,12 @@ class Ball {
   }
 
   update() {
+    if (this.pos.y < 0) {
+      this.velocity.y *= -1;
+    }
+    if (this.pos.x < 0 || this.pos.x > width) {
+      this.velocity.x *= -1;
+    }
     this.pos.add(p5.Vector.mult(this.velocity, this.speed));
   }
 }
