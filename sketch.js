@@ -3,6 +3,8 @@ var paddle;
 var ball;
 var score_dom;
 var paused = false;
+var lastScore;
+var hiScore = 0;
 
 function setup() {
   createCanvas(900, 600);
@@ -13,6 +15,8 @@ function setup() {
   );
 
   score_dom = createP('Score: ' + score);
+  lastscore_dom = createP('Last Score: ' + lastScore);
+  hiscore_dom = createP('High Score: ' + hiScore);
 }
 
 function draw() {
@@ -26,12 +30,16 @@ function draw() {
   ballLostOffBottom();
 
   score_dom.html('Score: ' + score);
+  lastscore_dom.html('Last Score: ' + lastScore);
+  hiscore_dom.html('High Score: ' + hiScore);
 }
 
 function ballLostOffBottom() {
   if (ball.pos.y > height) {
     ball.reset();
     paddle.reset();
+    lastScore = score;
+    if (score > hiScore) hiScore = score;
     score = 0;
   }
 }
