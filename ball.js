@@ -5,6 +5,12 @@ class Ball {
     this.speed = 4;
   }
 
+  reset() {
+    this.pos = createVector(width / 2, height / 2);
+    this.velocity = p5.Vector.fromAngle(random(-3 * PI / 4, -PI / 4));
+    this.speed = 4;
+  }
+
   show() {
     fill(255);
     ellipse(this.pos.x, this.pos.y, 10, 10);

@@ -22,21 +22,25 @@ function draw() {
   ball.update();
   ball.show();
 
-  ballHitsPaddle(ball, paddle);
+  ballHitsPaddle();
+  ballLostOffBottom();
 
   score_dom.html('Score: ' + score);
 }
 
-function ballHitsPaddle(ball, paddle) {
-  if (ball.pos.y < height - 30) {
+function ballLostOffBottom() {
+  if (ball.pos.y > height) {
+    ball.reset();
+    paddle.reset();
+    score = 0;
+  }
+}
+
+function ballHitsPaddle() {
+  if (ball.pos.y < height - 30 || ball.pos.y > height - 10) {
     return;
   }
-  if (ball.pos.x < paddle.x - 75 || ball.pos.x > paddle.x + 75) {
-    console.log('Missed paddle');
-    ball.pos.x = width/2;
-    ball.pos.y = height/2;
-    ball.speed = 4;
-  } else {
+  if (ball.pos.x > paddle.x - 75 & ball.pos.x < paddle.x + 75) {
     var hitPos = ball.pos.x - paddle.x;
     ball.velocity.x += map(hitPos, -75, 75, -1, 1, true);
     ball.velocity.y *= -1;

@@ -6,6 +6,12 @@ class Paddle {
     this.direction = 0;
   }
 
+  reset() {
+    this.x = width / 2;
+    this.y = height - 20;
+    this.direction = 0;
+  }
+
   show() {
     rectMode(CENTER);
     fill(255);
